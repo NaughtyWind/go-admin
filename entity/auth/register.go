@@ -7,4 +7,5 @@ import (
 type Register struct {
 	basic.User
 	Phone string `json:"phone"`
+	Email string `json:"email"`
 }

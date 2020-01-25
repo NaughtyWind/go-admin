@@ -1,13 +1,16 @@
 package main
 
 import (
-	"go-admin/entity/auth"
+	"github.com/gorilla/mux"
+	"go-admin/middleware/routerBoot"
+	_ "go-admin/router/auth"
+	"log"
+	"net/http"
 )
 
 func main() {
-	u := new(auth.Register)
-	u.LoginName = "lxy"
-	u.PassWord = "12345"
-	u.Phone = "123456"
-	print(u.Phone)
+	router := mux.NewRouter()
+	routerBoot.RegisterEngine(router)
+	routerBoot.StartRoute()
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
